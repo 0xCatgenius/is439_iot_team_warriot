@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>C-SCAPE | Home Page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="assets/css/plugins/tour/introjs.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/animate.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/images/App-icon.png" rel="shortcut icon" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+</head>
+
+<body>
+
+    <!--      start of side bar-->
+    <!--      end of sidebar-->
+    <div id="wrapper">
+        <!--      start of side bar-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span>
+                                <img alt="image" src="assets/images/user-icon.png" height="50" width="50" />
+                            </span>
+
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Welcome!</strong>
+                                </span> <BR />
+                                <span class="text-muted text-xs block">C-SCAPE Portal</span>
+                        </div>
+                        <div class="logo-element">
+                            SCAPE
+                        </div>
+                    </li>
+                    <li class="nav-label"><a id="viewHome">Home</a></li>
+                    <li class="nav-label"><a id="viewHeatmap">Floor Heatmap</a></li>
+                    <li class="nav-label"><a id="viewUser">User Demographics</a></li>
+                    <li class="nav-label"><a id="viewDuration">User Duration Dashboard</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!--     start of profile -->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <br />
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message">Welcome to C-SCAPE Portal</span>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+
+        <button id="start" style="position:fixed; bottom: 0; left: 0;   z-index: 999999; "
+            class="btn-info ">Guide?</button>
+
+        <!-- start of right contents Header -->
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-9">
+                <h2 id="pageTitle">SCAPE Overview</h2>
+                <ol class="breadcrumb">
+
+                </ol>
+            </div>
+        </div>
+
+        <!-- start of right contents-->
+        <div class="wrapper wrapper-content animated fadeInRight tablinks" id="home">
+            <div class="row">
+                <center>
+                <img src="https://www.scape.sg/wp-content/uploads/2019/03/inv-bts-105.jpg" style="width:90%;opacity:0.7">
+                </center>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content animated fadeInRight tablinks heatmapContent" id="heatmapContent"
+            style="display:none">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="ibox-title">
+                        <h5>Function Legend</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <h4>Select floor</h4>
+                            <select class="btn" id="floorSelect">
+                                <option> Level 1</option>
+                                <option selected> Level 2</option>
+                                <option> Level 3</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <h4>Select Time Interval</h4>
+                            <input type="text" name="datetimes" style="width:200px" />
+                        </div>
+                    </div>
+                    <div>
+                        <button id="refreshHeatmap">Refresh</button>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="ibox-title" style="width:650px">
+                        <h5>Heatmap </h5>
+                    </div>
+                    <div class="ibox-content" style="width:650px">
+
+                        <div>
+                            <div id="heatmapContainer"
+                                style="background-image:url('assets/images/scapesgL2.png'); background-repeat: no-repeat; background-size: cover; height:447px; width:631.5px">
+
+                            </div>
+                            <div class="legend-area" style="width:100px;bottom:0px;right:0px;position:absolute">
+
+                                <span id="min"></span>
+                                <span id="max"></span>
+                                <img id="gradient" src="assets/images/legend.png" style="width:100%" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="wrapper wrapper-content animated fadeInRight tablinks heatmapContent" id="userContent"
+            style="display:none">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="ibox-title">
+                        <h5>Function Legend</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <h4>Chart Filter</h4>
+                            <select class="btn" id="chartFilterSelect">
+                                <option selected> Gender </option>
+                                <option> Age </option>
+                                <option> Event Interest </option>
+                                <option> Mall Interest </option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="ibox-title" style="width:650px">
+                        <h5>Display Chart</h5>
+                    </div>
+                    <div class="ibox-content" style="width:650px">
+                        <div><canvas id="myChart" style="width:200; height:200"></canvas></div>
+                    </div>
+                </div>
+
+                <div class="col-md-6" style="width:100%">
+                    <div class="ibox-title" style="width:100%">
+                        <h5>User Table </h5>
+                    </div>
+                    <div class="ibox-content" style="width:100%">
+
+                        <table id="userInfoTable" class="display stripe hover" style="width:100%"></table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="wrapper wrapper-content animated fadeInRight tablinks heatmapContent" id="userDuration"
+            style="display:none">
+            <div class="row">
+
+                <div class="col-md-6" style="width:100%;height:30%">
+                    <div class="ibox-title" style="width:100%">
+                        <h5>Duration Table</h5>
+                    </div>
+                    <div class="ibox-content" style="width:100%">
+                        <h5>Select date</h5><input type="text" name="datepicker" style="width:200px" value="" />
+                        <div>
+                            <table id="durationTable" class="display stripe hover" style="width:100%"></table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        </br>
+        <div class="footer">
+            <div class="pull-right">
+                *SCAPE Singapore
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/jquery-3.1.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/plugins/tour/intro.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+        type="text/javascript"></script>
+    <script src="http://www.hivemq.com/demos/websocket-client/js/mqttws31.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="assets/js/inspinia.js"></script>
+    <script src="assets/js/plugins/pace/pace.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+        type="text/javascript"></script>
+    <script src="assets/js/heatmap.min.js"></script>
+    <!--guage -->
+    <script src="assets/js/plugins/guage/gauge.min.js"></script>
+    <!-- data table-->
+    <script src="assets/js/plugins/dataTables/datatables.min.js"></script>
+    <!-- ChartJS-->
+    <script src="assets/js/plugins/chartJs/Chart.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-database.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var place_dict = { "fabriqade": [147, 187, 20], "ducks&crafts": [152, 269, 20] }
+            var config = {
+                apiKey: "AIzaSyBOJMEElUZ3lOThRe8YK0Kwey4A2phey5A",
+                authDomain: "is439-team-warriot.firebaseapp.com",
+                databaseURL: "https://is439-team-warriot.firebaseio.com",
+                projectId: "is439-team-warriot",
+                storageBucket: "is439-team-warriot.appspot.com",
+                messagingSenderId: "1077905184796"
+            };
+            firebase.initializeApp(config);
+            var database = firebase.database();
+            var config = {
+                container: document.getElementById("heatmapContainer")
+            };
+            var heatmap = h337.create({
+                container: document.getElementById("heatmapContainer"),
+                //backgroundColor: "assets/images/scapesgL2.png"
+            });
+            var dataSet = [];
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myPieChart;
+            function heatmapGen(data) {
+
+                var thisHeatmap = []
+                //console.log("Heatmap before:"+place_dict["ducks&crafts"]);
+                var valueset = [];
+
+                for (var key in data) {
+
+                    thisJson = {};
+                    thisJson["x"] = place_dict[key][0];
+                    thisJson["y"] = place_dict[key][1];
+                    thisJson["radius"] = place_dict[key][2];
+                    thisJson["value"] = data[key];
+                    valueset.push(data[key]);
+                    thisHeatmap.push(thisJson);
+                }
+                var maxPerson = Math.max(...valueset);
+                console.log("this heatmap: ")
+                console.log(thisHeatmap)
+                if (maxPerson > 1) {
+                    heatmap.setData({
+                        max: maxPerson,
+                        min: 1,
+                        data: thisHeatmap
+                    });
+                } else if (maxPerson === 1) {
+                    console.log("max is 1")
+                    thisHeatmap.forEach(function (eachArr) {
+                        if (eachArr["value"] === 0) {
+                            eachArr["value"] = -1
+                        }
+                    })
+                    heatmap.setData({
+                        max: 1,
+                        min: -1,
+                        data: thisHeatmap
+                    });
+                } else {
+                    heatmap.setData({ data: [] });
+                    //alert("there is currently no user in the mall!");
+                }
+                console.log(thisHeatmap);
+
+
+                var legendCanvas = document.createElement('canvas');
+                legendCanvas.width = 100;
+                legendCanvas.height = 10;
+                var min = document.querySelector('#min');
+                var max = document.querySelector('#max');
+                min.innerHTML = 0;
+                max.innerHTML = maxPerson;
+            };
+
+
+            $('input[name="datetimes"]').daterangepicker({
+                timePicker: true,
+                startDate: moment().startOf('hour'),
+                endDate: moment().startOf('hour').add(32, 'hour'),
+                locale: {
+                    format: 'M/DD hh:mm A'
+                }
+            });
+            $('input[name="datepicker"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10),
+
+            },function(start,end,label){
+                var pickDate = start.format('YYYY-MM-DD')
+                var ref = database.ref("visit_duration");
+                var durationMap = new Map();
+
+                ref.orderByChild('date_time').startAt(pickDate + " 00:00:01").endAt(pickDate + " 23:59:59").once("value", function (snapshot) {
+                    snapshot.forEach(function (data) {
+                        var place = data.val().piID
+                        var personID = data.val().beaconID
+                        var duration = data.val().visit_duration
+                        if (place in durationMap) {
+                            if (durationMap[place].has(personID)) {
+                                durationMap[place][personID] = duration
+                            } else {
+                                //console.log("new entry "+personID)
+                                durationMap[place][personID] = duration
+                            }
+                        } else {
+                            //console.log("new map "+place+personID)
+                            //console.log( Array.from(durationMap.keys()))
+                            var tempSubMap = new Map()
+                            tempSubMap[personID] = duration
+                            durationMap[place] = tempSubMap
+                            //console.log(durationMap[place])
+                            //console.log(durationMap.has(place))
+                        }
+                    })
+                    console.log("selected dateL")
+                    console.log(durationMap)
+                    var namePair = new Map()
+                    database.ref().child("users").once('value', function (snapshot) {
+
+                        snapshot.forEach(function (child) {
+                            //console.log(child)
+                            var childData = child.val();
+                            var childTime = child.key;
+                            namePair["" + childData.beaconid] = "" + childData.name
+                        });
+                        console.log("namePair:")
+                        console.log(namePair)
+                        console.log(Array.from(namePair.keys()))
+                        var displayArr = []
+                        for (m in durationMap) {
+                            for (n in durationMap[m]) {
+                                var tempArr = []
+                                tempArr.push(pickDate)
+                                tempArr.push(m)
+                                /*console.log(namePair)
+                                console.log(n)
+                                console.log(namePair[n])*/
+                                var newN=n
+                                if(n.substr(-3,3)!="com"){
+                                    console.log("current n "+n)
+                                    newN=n+".com"
+                                    console.log("new n:"+newN)
+                                }
+                                
+                                tempArr.push(namePair[newN])
+                                tempArr.push(durationMap[m][n])
+                                displayArr.push(tempArr)
+                            }
+                        }
+                        console.log(displayArr)
+                        var datatable = $('#durationTable').DataTable({
+                            data: displayArr,
+                            autoWidth: true,
+                            "bDestroy": true,
+                            columns: [
+                                { title: "Date" },
+                                { title: "Shop" },
+                                { title: "Customer" },
+                                { title: "Visit Duration" }
+                            ]
+                        });
+                    });
+
+                })
+            }
+            );
+            $('input[name="datetimes"]').on('change', function () {
+                var timeData = $('input[name="datetimes"]').data('daterangepicker');
+                var startTime = timeData.startDate.format('YYYY-MM-DD HH:mm:ss');
+                var endTime = timeData.endDate.format('YYYY-MM-DD HH:mm:ss');
+                console.log(startTime + " to " + endTime);
+                database.ref().child("heatmap").once('value', function (snapshot) {
+                    var value = { "ducks&crafts": 0, "fabriqade": 0};
+                    snapshot.forEach(function (child) {
+                        //console.log(child)
+                        var childData = child.val();
+                        var childTime = child.key;
+
+                        if ((new Date(childTime) < (new Date(endTime))) && ((new Date(childTime)) > (new Date(startTime)))) {
+                            value["ducks&crafts"] += childData['ducks&crafts'];
+                            value["fabriqade"] += childData.fabriqade;
+                            console.log((new Date(childTime)) + " > " + (new Date(endTime)));
+                            console.log((new Date(childTime)) > (new Date(endTime)));
+                        }
+
+                    });
+                    console.log("value.value is")
+                    console.log(value);
+                    heatmapGen(value);
+                });
+
+            });
+            $("#floorSelect").on("change", function () {
+                var floorObject = document.getElementById("floorSelect");
+                var floorValue = floorObject.options[floorObject.selectedIndex].text;
+                alert(floorValue);
+            });
+            $("#viewHeatmap").on("click", function () {
+
+                var tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].style.display = "none";
+                }
+                document.getElementById("pageTitle").textContent = "Heatmap Information";
+                document.getElementById("heatmapContent").style.display = "inline";
+                // Initialize Firebase
+
+                database.ref().child("heatmap").limitToLast(1).once('value', function (snapshot) {
+                    //console.log(snapshot);
+                    //console.log(snapshot.val());
+                    var value = {};
+                    snapshot.forEach(function (thing) {
+                        //console.log(thing);
+                        value = snapshot.val()[thing.key];
+                        console.log("Thing:" + snapshot.val()[thing.key]);
+                    });
+                    heatmapGen(value);
+                });
+
+            });
+
+            $("#viewHome").on("click", function () {
+
+                var tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].style.display = "none";
+                }
+                document.getElementById("pageTitle").textContent = "SCAPE Overview";
+                document.getElementById("home").style.display = "inline-block";
+
+            });
+            $("#refreshHeatmap").on("click", function () {
+
+                database.ref().child("heatmapTest").limitToLast(1).once('value', function (snapshot) {
+                    //console.log(snapshot);
+                    //console.log(snapshot.val());
+                    var value = {};
+                    snapshot.forEach(function (thing) {
+                        console.log(thing);
+                        value = snapshot.val()[thing.key];
+                        //console.log("Thing:" + snapshot.val()[thing.key]);
+                    });
+                    heatmapGen(value);
+                });
+                console.log("update successful");
+            });
+            $("#viewUser").on("click", function () {
+                var tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].style.display = "none";
+                }
+                document.getElementById("pageTitle").textContent = "User Information";
+                document.getElementById("userContent").style.display = "inline";
+                // Initialize Firebase
+
+                database.ref().child("users").once('value', function (snapshot) {
+                    var counter = 0
+                    snapshot.forEach(function (child) {
+                        //console.log(child)
+                        var childData = child.val();
+                        var childTime = child.key;
+                        //console.log(childData)
+                        thisData = []
+                        thisData.push(childData.name)
+                        thisData.push(childData.age)
+                        thisData.push(childData.phone)
+                        thisData.push(childData.gender)
+                        thisData.push(childData.beaconid)
+                        thisData.push(childData.join_date)
+                        var event_keys = [];
+                        for (var k in childData.event_interest) event_keys.push(k);
+                        thisData.push(event_keys)
+                        var mall_keys = [];
+                        for (var k in childData.mall_interest) mall_keys.push(k);
+                        thisData.push(event_keys)
+                        //console.log(thisData)
+                        dataSet[counter] = thisData
+                        counter++;
+                    });
+                    //console.log("value.value is")
+                    //console.log(dataSet);
+                    console.log(dataSet[1])
+
+                    var datatable = $('#userInfoTable').DataTable({
+                        data: dataSet,
+                        autoWidth: true,
+                        "bDestroy": true,
+                        columns: [
+                            { title: "Name" },
+                            { title: "age" },
+                            { title: "phone" },
+                            { title: "gender" },
+                            { title: "beacon_id" },
+                            { title: "join_date" },
+                            { title: "event_interest" },
+                            { title: "mall_interest" }
+                        ]
+                    });
+
+                    generateChart(dataSet, "Gender", ctx);
+
+                });
+
+
+
+            })
+            function generateChart(dataSet, option, ctx) {
+                optionDict = { "Age": 1, "Gender": 3, "Event Interest": 6, "Mall Interest": 7 }
+                chartData = []
+                optionNumber = optionDict[option]
+                for (var v = 0; v < dataSet.length; v++) {
+                    if (optionNumber === 6 || optionNumber === 7) {
+
+                        dataSet[v][optionNumber].forEach(function (element) {
+                            chartData.push(element)
+                        })
+                    } else {
+                        chartData.push(dataSet[v][optionNumber])
+                    }
+
+                    //console.log(dataSet[v])
+                }
+                chartDict = {}
+
+                for (var i = 0, j = chartData.length; i < j; i++) {
+                    chartDict[chartData[i]] = (chartDict[chartData[i]] || 0) + 1;
+                }
+
+                console.log(Object.values(chartDict))
+                if (myPieChart) {
+                    myPieChart.destroy();
+                }
+                myPieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: Object.keys(chartDict),
+                        datasets: [{
+                            label: 'Dataset 1',
+                            data: Object.values(chartDict),
+                            backgroundColor: [
+                                'rgba(160, 106, 80, 1)',
+                                'rgba(173, 174, 178, 1)',
+                                'rgba(122, 103, 71, 1)',
+                                'rgba(97, 78, 82, 1)',
+                                'rgba(45, 36, 31, 1)'
+                            ],
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+
+                });
+                myPieChart.update();
+                console.log("create done")
+            };
+            $("#chartFilterSelect").on('change', function () {
+                var selectOption = document.getElementById("chartFilterSelect").value;
+                console.log(selectOption);
+                generateChart(dataSet, selectOption, ctx);
+            });
+            $("#viewDuration").on("click", function () {
+                var tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].style.display = "none";
+                }
+                document.getElementById("pageTitle").textContent = "User Duration Information";
+                document.getElementById("userDuration").style.display = "inline";
+                // Initialize Firebase
+                var ref = database.ref("visit_duration");
+                var durationMap = new Map();
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+
+                today = yyyy + '-' + mm + '-' + dd;
+                ref.orderByChild('date_time').startAt(today + " 00:00:01").endAt(today + " 23:59:59").once("value", function (snapshot) {
+                    snapshot.forEach(function (data) {
+                        var place = data.val().piID
+                        var personID = data.val().beaconID
+                        var duration = data.val().visit_duration
+                        if (place in durationMap) {
+                            if (durationMap[place].has(personID)) {
+                                durationMap[place][personID] = duration
+                            } else {
+                                durationMap[place][personID] = duration
+                            }
+                        } else {
+                            var tempSubMap = new Map()
+                            tempSubMap[personID] = duration
+                            durationMap[place] = tempSubMap
+                        }
+                    })
+                    console.log(durationMap)
+                    var namePair = new Map()
+                    database.ref().child("users").once('value', function (snapshot) {
+                        var counter = 0
+                        snapshot.forEach(function (child) {
+                            //console.log(child)
+                            var childData = child.val();
+                            var childTime = child.key;
+                            namePair["" + childData.beaconid] = "" + childData.name
+                        });
+                        console.log(namePair)
+                        console.log(Array.from(namePair.keys()))
+                        var displayArr = []
+                        for (m in durationMap) {
+                            for (n in durationMap[m]) {
+                                var tempArr = []
+                                tempArr.push(today)
+                                tempArr.push(m)
+                                //console.log(n)
+                                tempArr.push(namePair[n])
+                                tempArr.push(durationMap[m][n])
+                                displayArr.push(tempArr)
+                            }
+                        }
+                        console.log(displayArr)
+                        var datatable = $('#durationTable').DataTable({
+                            data: displayArr,
+                            autoWidth: true,
+                            "bDestroy": true,
+                            columns: [
+                                { title: "Date" },
+                                { title: "Shop" },
+                                { title: "Customer" },
+                                { title: "Visit Duration" }
+                            ]
+                        });
+                    });
+
+                })
+
+            })
+        })
+    </script>
+</body>
+
+<!-- Mainly scripts -->
+
+</html>
