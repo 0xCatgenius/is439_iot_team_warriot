@@ -1,2 +1,2 @@
 # is439_iot_team_warriot
-This is a repo for SMU Information Systems course IS439 IoT project to explore indoor positioning using beacons 
+We are a group of SMU students from IS439 IoT working on a project to explore indoor positioning using beacons 
